@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IUPAC Nomenclature Masterclass</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Mono:wght@400;500&display=swap');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #0d1117; }
+    .app { min-height: 100vh; background: #0d1117; color: #e6edf3; font-family: 'DM Mono', monospace; padding: 20px 14px 48px; position: relative; overflow-x: hidden; }
+    .hdr { text-align: center; margin-bottom: 28px; }
+    .hdr h1 { font-family: 'Syne', sans-serif; font-size: clamp(22px, 5vw, 38px); font-weight: 800; background: linear-gradient(135deg, #58a6ff, #7ee787, #f78166); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 6px; }
+    .hdr p { color: #8b949e; font-size: 12px; }
+    .badge { display: inline-block; background: #161b22; border: 1px solid #30363d; border-radius: 20px; padding: 3px 12px; font-size: 10px; color: #7ee787; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+    
+    .g4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; max-width: 900px; margin: 0 auto 24px; }
+    .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 680px; margin: 0 auto 12px; }
+    .g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; max-width: 680px; margin: 0 auto 24px; }
+    @media(max-width: 500px) { .g4, .g2, .g3 { grid-template-columns: 1fr; } }
+    
+    .card { background: #161b22; border: 2px solid #30363d; border-radius: 14px; padding: 20px 14px; cursor: pointer; text-align: center; transition: all 0.2s; }
+    .card:hover { transform: translateY(-2px); }
+    .card.blue:hover { border-color: #58a6ff; } .card.orange:hover { border-color: #ffa657; } .card.purple:hover { border-color: #bc8cff; } .card.teal:hover { border-color: #39d0d8; }
+    .ci { font-size: 28px; margin-bottom: 7px; display: block; }
+    .ct { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: #e6edf3; margin-bottom: 3px; }
+    .cs { font-size: 11px; color: #8b949e; }
+    .panel { max-width: 660px; margin: 0 auto; background: #161b22; border: 1px solid #30363d; border-radius: 14px; padding: 22px; animation: si 0.2s ease; }
+    @keyframes si { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fi { from { opacity: 0; } to { opacity: 1; } }
+    .plbl { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 11px; }
+    .plbl.b { color: #58a6ff; } .plbl.o { color: #ffa657; } .plbl.p { color: #bc8cff; } .plbl.t { color: #39d0d8; }
+    .row { display: flex; gap: 9px; margin-bottom: 8px; }
+    .inp { flex: 1; background: #0d1117; border: 1px solid #30363d; border-radius: 9px; color: #e6edf3; font-family: 'DM Mono', monospace; font-size: 13px; padding: 11px 14px; outline: none; transition: border-color 0.2s; }
+    .inp:focus { border-color: #58a6ff; }
+    .inp::placeholder { color: #484f58; }
+    .btn { background: #58a6ff; color: #0d1117; border: none; border-radius: 9px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 12px; padding: 11px 18px; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+    .btn:hover { filter: brightness(1.1); transform: scale(1.02); }
+    .btn.o { background: #ffa657; color: #0d1117; } .btn.p { background: #bc8cff; color: #0d1117; } .btn.t { background: #39d0d8; color: #0d1117; } .btn.ghost { background: #21262d; color: #e6edf3; }
+    .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+    .rbox { margin-top: 16px; background: #0d1117; border: 1px solid #30363d; border-radius: 11px; overflow: hidden; animation: fi 0.3s ease; }
+    .rsec { padding: 12px 16px; border-bottom: 1px solid #21262d; }
+    .rsec:last-child { border-bottom: none; }
+    .rlbl { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #484f58; margin-bottom: 5px; }
+    .nval { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 17px; color: #58a6ff; }
+    .fval { font-family: 'DM Mono', monospace; font-size: 20px; color: #ffa657; }
+    .sbox { font-family: 'DM Mono', monospace; font-size: 12px; line-height: 1.8; border-radius: 7px; padding: 10px 12px; overflow-x: auto; white-space: pre; background: #161b22; color: #7ee787; border: 1px solid #21262d; }
+    .sri { background: #0d1117; border: 1px solid #30363d; border-radius: 9px; padding: 10px 12px; margin-bottom: 7px; cursor: pointer; transition: all 0.15s; display: flex; justify-content: space-between; align-items: center; }
+    .sri:hover { border-color: #58a6ff; }
+    .sn { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px; color: #58a6ff; }
+    .sf { font-family: 'DM Mono', monospace; font-size: 12px; color: #ffa657; }
+    .sd { font-size: 10px; color: #484f58; margin-top: 2px; }
+    .nf { text-align: center; padding: 18px; color: #484f58; font-size: 12px; }
+    
+    .cfg-group { margin-bottom: 16px; }
+    .cfg-label { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; color: #8b949e; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+    .dpills { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 9px; margin-bottom: 8px; }
+    .dp { border: 2px solid #30363d; border-radius: 11px; padding: 11px 9px; text-align: center; cursor: pointer; transition: all 0.2s; background: #0d1117; }
+    .dp:hover { transform: translateY(-1px); }
+    .dp.sel.easy { border-color: #7ee787; background: #0d2318; } .dp.sel.medium { border-color: #ffa657; background: #1f1400; } .dp.sel.hard { border-color: #f78166; background: #2d1319; } .dp.sel.mixed { border-color: #bc8cff; background: #1c122c; }
+    .dp.sel.mode { border-color: #58a6ff; background: #0c2135; }
+    .dpi { font-size: 18px; margin-bottom: 3px; }
+    .dpn { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 12px; }
+    .dps { font-size: 10px; color: #8b949e; margin-top: 2px; }
+    .dp.sel.easy .dpn { color: #7ee787; } .dp.sel.medium .dpn { color: #ffa657; } .dp.sel.hard .dpn { color: #f78166; } .dp.sel.mixed .dpn { color: #bc8cff; } .dp.sel.mode .dpn { color: #58a6ff; }
+    
+    .pbar { height: 4px; background: #21262d; border-radius: 2px; margin-bottom: 16px; overflow: hidden; }
+    .pfill { height: 100%; border-radius: 2px; transition: width 0.4s; }
+    .pfill.o { background: linear-gradient(90deg, #f78116, #ffa657); }
+    .pfill.p { background: linear-gradient(90deg, #bc8cff, #d2b0ff); }
+    .pfill.t { background: linear-gradient(90deg, #39d0d8, #5ee0e7); }
+    .qmeta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 5px; }
+    .qn { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; color: #f78116; }
+    .qn.p { color: #bc8cff; }
+    .dbg { font-size: 10px; border-radius: 20px; padding: 2px 9px; font-family: 'Syne', sans-serif; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+    .dbg.easy { background: #0d2318; color: #7ee787; border: 1px solid #2ea043; }
+    .dbg.medium { background: #1f1400; color: #ffa657; border: 1px solid #6a3e00; }
+    .dbg.hard { background: #2d1319; color: #f78166; border: 1px solid #6e3535; }
+    
+    .qsc { background: #0d1117; border: 1px solid #30363d; border-radius: 11px; margin-bottom: 14px; overflow: hidden; }
+    .qsl { padding: 7px 12px; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #484f58; border-bottom: 1px solid #21262d; }
+    .qsc2 { padding: 9px 12px; font-family: 'DM Mono', monospace; font-size: 13px; color: #7ee787; border-bottom: 1px solid #21262d; }
+    .qse { padding: 10px 12px; font-family: 'DM Mono', monospace; font-size: 11px; color: #a3f09f; white-space: pre; overflow-x: auto; line-height: 1.8; background: #0d1a0d; }
+    
+    .rev-qname-box { padding: 16px; text-align: center; border-bottom: 1px solid #21262d; background: #0d1624; }
+    .rev-qname { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; color: #58a6ff; }
+    .rev-opts-grid { display: grid; grid-template-columns: 1fr; gap: 10px; padding: 14px; background: #0d1117; }
+    .rev-opt-card { background: #161b22; border: 2px solid #30363d; border-radius: 9px; padding: 12px 14px; cursor: pointer; font-family: 'DM Mono', monospace; font-size: 13px; transition: all 0.2s; display: flex; align-items: center; gap: 10px; }
+    .rev-opt-card:hover:not(.disabled) { border-color: #58a6ff; background: #121d2f; }
+    .rev-opt-card.correct { border-color: #2ea043; background: #0d2318; color: #7ee787; }
+    .rev-opt-card.wrong { border-color: #6e3535; background: #2d1319; color: #f78166; }
+    .rev-opt-idx { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 10px; background: #21262d; color: #8b949e; width: 22px; height: 22px; border-radius: 4px; display: flex; align-items: center; justify-content: center; }
+    .rev-opt-card.correct .rev-opt-idx { background: #2ea043; color: #0d1117; }
+    .rev-opt-card.wrong .rev-opt-idx { background: #6e3535; color: #e6edf3; }
+    .rev-opt-details { margin-top: 4px; font-size: 11px; color: #8b949e; white-space: pre; background: #0d1117; padding: 6px; border-radius: 4px; border: 1px solid #21262d; width: 100%; display: none; }
+    .rev-opt-card.correct .rev-opt-details, .rev-opt-card.wrong .rev-opt-details { display: block; }
+
+    .fb { border-radius: 9px; padding: 12px 14px; margin-bottom: 12px; animation: si 0.2s ease; }
+    .fb.ok { background: #0d2318; border: 1px solid #2ea043; } .fb.no { background: #2d1319; border: 1px solid #6e3535; }
+    .fbt { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 12px; margin-bottom: 3px; }
+    .fb.ok .fbt { color: #7ee787; } .fb.no .fbt { color: #f78166; }
+    .fba { font-size: 11px; color: #8b949e; }
+    .fba span { color: #ffa657; font-weight: bold; }
+    .pst { display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+    .ps { flex: 1; min-width: 70px; background: #0d1117; border: 1px solid #30363d; border-radius: 9px; padding: 9px 12px; text-align: center; }
+    .psn { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px; }
+    .psl { font-size: 10px; color: #484f58; letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+    .qres { text-align: center; animation: fi 0.3s ease; }
+    .qre { font-size: 44px; margin-bottom: 10px; display: block; }
+    .qrs { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 44px; margin-bottom: 3px; }
+    .qrs.pf { color: #7ee787; } .qrs.gd { color: #58a6ff; } .qrs.ok { color: #ffa657; } .qrs.pr {color: #f78166; }
+    .qrl { font-size: 11px; color: #8b949e; margin-bottom: 14px; }
+    .rmk { background: #161b22; border: 1px solid #30363d; border-radius: 11px; padding: 14px 17px; font-size: 12px; line-height: 1.7; color: #cdd9e5; margin-bottom: 16px; text-align: left; }
+    .rmkh { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 12px; color: #f78116; margin-bottom: 6px; letter-spacing: 1px; text-transform: uppercase; }
+    .rev { margin-bottom: 16px; border: 1px solid #30363d; border-radius: 11px; overflow: hidden; }
+    .rr { display: grid; grid-template-columns: 22px 1fr 1fr auto; gap: 7px; padding: 9px 12px; border-bottom: 1px solid #21262d; align-items: start; font-size: 11px; }
+    .rr.hd { background: #0d1117; color: #484f58; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; }
+    .rn { color: #484f58; font-family: 'Syne', sans-serif; font-weight: 700; }
+    .rq { color: #8b949e; font-family: 'DM Mono', monospace; word-break: break-all; }
+    .ra { font-family: 'DM Mono', monospace; word-break: break-all; }
+    .ra.ok { color: #7ee787; } .ra.no { color: #f78166; }
+    .brow { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .div { border: none; border-top: 1px solid #21262d; margin: 16px 0; }
+    .gtg { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; margin-bottom: 8px; }
+    @media(max-width:460px) { .gtg { grid-template-columns: 1fr; } }
+    .gtc { background: #0d1117; border: 2px solid #30363d; border-radius: 13px; padding: 16px 13px; cursor: pointer; transition: all 0.2s; position: relative; }
+    .gtc:hover { border-color: #39d0d8; transform: translateY(-2px); }
+    .gtn { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 10px; color: #484f58; letter-spacing: 2px; margin-bottom: 5px; }
+    .gtt { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px; color: #e6edf3; margin-bottom: 3px; }
+    .gts font-size: 10px; color: #8b949e; }
+    .spp { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 13px; }
+    .sp { width: 25px; height: 5px; border-radius: 3px; background: #21262d; transition: background 0.3s; }
+    .sp.d { background: #39d0d8; }
+    .lt { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; color: #e6edf3; margin-bottom: 4px; }
+    .ls { font-size: 11px; color: #8b949e; margin-bottom: 13px; }
+    .lc { background: #0d1117; border: 1px solid #30363d; border-radius: 11px; padding: 16px; margin-bottom: 15px; animation: fi 0.3s ease; }
+    .lc h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px; color: #39d0d8; margin-bottom: 9px; }
+    .lc p { font-size: 12px; line-height: 1.9; color: #cdd9e5; margin-bottom: 8px; }
+    .lhi { background: #161b22; border-left: 3px solid #39d0d8; border-radius: 0 7px 7px 0; padding: 10px 13px; margin: 10px 0; font-size: 12px; line-height: 1.8; color: #cdd9e5; }
+    .lhi b { color: #39d0d8; }
+    .lex { background: #0d1a1a; border: 1px solid #1e3a3a; border-radius: 7px; padding: 10px 12px; margin: 9px 0; font-family: 'DM Mono', monospace; font-size: 11px; color: #5ee0e7; line-height: 1.9; white-space: pre; overflow-x: auto; }
+    .lrl { list-style: none; padding: 0; margin: 9px 0; }
+    .lrl li { display: flex; gap: 9px; align-items: flex-start; font-size: 12px; line-height: 1.7; color: #cdd9e5; padding: 5px 0; border-bottom: 1px solid #21262d; }
+    .lrl li:last-child { border-bottom: none; }
+    .lrn { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 10px; color: #39d0d8; min-width: 18px; padding-top: 2px; }
+    .lq { background: #0d1117; border: 2px solid #39d0d8; border-radius: 11px; padding: 16px; margin-bottom: 15px; animation: fi 0.3s ease; }
+    .lql { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #39d0d8; margin-bottom: 9px; }
+    .lqq { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px; color: #e6edf3; margin-bottom: 12px; line-height: 1.5; white-space: pre-line; }
+    .mo { display: flex; flex-direction: column; gap: 7px; margin-bottom: 10px; }
+    .moo { background: #161b22; border: 2px solid #30363d; border-radius: 9px; padding: 10px 12px; cursor: pointer; font-size: 12px; color: #cdd9e5; transition: all 0.2s; display: flex; align-items: center; gap: 9px; }
+    .moo:hover:not(.dis) { border-color: #39d0d8; background: #0d1a1a; }
+    .moo.ok { border-color: #2ea043; background: #0d2318; color: #7ee787; }
+    .moo.no { border-color: #6e3535; background: #2d1319; color: #f78166; }
+    .moo.dis { cursor: default; }
+    .ml { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 10px; min-width: 20px; height: 20px; border-radius: 5px; background: #21262d; display: flex; align-items: center; justify-content: center; color: #8b949e; flex-shrink: 0; }
+    .moo.ok .ml { background: #2ea043; color: #0d1117; }
+    .moo.no .ml { background: #6e3535; color: #f78166; }
+    .fi2 { width: 100%; background: #161b22; border: 2px solid #30363d; border-radius: 9px; color: #e6edf3; font-family: 'DM Mono', monospace; font-size: 13px; padding: 10px 12px; outline: none; transition: border-color 0.2s; margin-bottom: 10px; }
+    .fi2:focus { border-color: #39d0d8; }
+    .fi2.ok { border-color: #2ea043; background: #0d2318; }
+    .fi2.no { border-color: #6e3535; background: #2d1319; }
+    .fi2::placeholder { color: #484f58; }
+    .qfb { border-radius: 7px; padding: 9px 12px; font-size: 11px; margin-bottom: 9px; animation: si 0.2s ease; }
+    .qfb.ok { background: #0d2318; border: 1px solid #2ea043; color: #7ee787; }
+    .qfb.no { background: #2d1319; border: 1px solid #6e3535; color: #f78166; }
+    .exp { background: #161b22; border: 1px solid #30363d; border-radius: 7px; padding: 10px 12px; font-size: 11px; color: #cdd9e5; line-height: 1.7; margin-bottom: 9px; }
+    .exp b { color: #39d0d8; }
+    .lcmp { text-align: center; padding: 14px 0; animation: fi 0.3s ease; }
+    .lci { font-size: 44px; margin-bottom: 10px; display: block; }
+    .lct { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px; color: #39d0d8; margin-bottom: 5px; }
+    .lcs { font-size: 12px; color: #8b949e; margin-bottom: 16px; }
+    .timer-wrap { display: flex; align-items: center; gap: 9px; margin-bottom: 12px; }
+    .timer-bar-bg { flex: 1; height: 6px; background: #21262d; border-radius: 3px; overflow: hidden; }
+    .timer-bar { height: 100%; border-radius: 3px; transition: width 1s linear, background 0.5s; }
+    .timer-bar.safe { background: #7ee787; }
+    .timer-bar.warn { background: #ffa657; }
+    .timer-bar.danger { background: #f78166; }
+    .timer-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 13px; min-width: 28px; text-align: right; }
+    .timer-num.safe { color: #7ee787; }
+    .timer-num.warn { color: #ffa657; }
+    .timer-num.danger { color: #f78166; }
+
+    .guide-intro { background: linear-gradient(135deg, #0d1a1a, #0d1117); border: 1px solid #1e3a3a; border-radius: 11px; padding: 14px 16px; margin-bottom: 14px; }
+    .guide-intro-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 13px; color: #39d0d8; margin-bottom: 5px; }
+    .guide-intro-sub { font-size: 11px; color: #8b949e; line-height: 1.7; }
+    .guide-section-label { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: #484f58; margin: 16px 0 8px; font-family: 'Syne', sans-serif; font-weight: 700; }
+    .gtc .gtc-badge { position: absolute; top: 10px; right: 10px; font-size: 8px; letter-spacing: 1px; text-transform: uppercase; padding: 2px 7px; border-radius: 20px; font-family: 'Syne', sans-serif; font-weight: 700; }
+    .gtc .gtc-badge.beginner { background: #0d2318; color: #7ee787; border: 1px solid #2ea043; }
+    .gtc .gtc-badge.practice { background: #1a1400; color: #ffa657; border: 1px solid #6a3e00; }
+
+    .bond-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 10px 0; }
+    @media(max-width:420px){ .bond-grid { grid-template-columns: 1fr; } }
+    .bond-card { background: #161b22; border: 1px solid #30363d; border-radius: 9px; padding: 10px 9px; text-align: center; }
+    .bond-card .bc-type { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 11px; margin-bottom: 4px; }
+    .bond-card .bc-sym { font-family: 'DM Mono', monospace; font-size: 15px; color: #ffa657; margin-bottom: 4px; }
+    .bond-card .bc-sfx { font-size: 10px; color: #8b949e; }
+    .bond-card.single { border-color: #39d0d8; } .bond-card.single .bc-type { color: #39d0d8; }
+    .bond-card.double { border-color: #7ee787; } .bond-card.double .bc-type { color: #7ee787; }
+    .bond-card.triple { border-color: #f78166; } .bond-card.triple .bc-type { color: #f78166; }
+
+    .prefix-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin: 10px 0; }
+    @media(max-width:420px){ .prefix-grid { grid-template-columns: repeat(2, 1fr); } }
+    .prefix-cell { background: #161b22; border: 1px solid #21262d; border-radius: 7px; padding: 7px 6px; text-align: center; }
+    .prefix-cell .pc-n { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 16px; color: #58a6ff; }
+    .prefix-cell .pc-p { font-family: 'DM Mono', monospace; font-size: 12px; color: #7ee787; margin-top: 2px; }
+    .prefix-cell .pc-ex { font-size: 9px; color: #484f58; margin-top: 2px; }
+
+    .fg-table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 11px; }
+    .fg-table th { background: #0d1117; color: #484f58; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; padding: 7px 9px; text-align: left; border-bottom: 1px solid #21262d; }
+    .fg-table td { padding: 8px 9px; border-bottom: 1px solid #21262d; color: #cdd9e5; vertical-align: top; }
+    .fg-table tr:last-child td { border-bottom: none; }
+    .fg-table td:first-child { font-family: 'Syne', sans-serif; font-weight: 700; color: #58a6ff; }
+    .fg-table td:nth-child(2) { font-family: 'DM Mono', monospace; color: #ffa657; }
+    .fg-table td:nth-child(3) { color: #8b949e; }
+    .fg-table td:nth-child(4) { color: #7ee787; }
+
+    .rule-step { display: flex; gap: 11px; align-items: flex-start; padding: 9px 0; border-bottom: 1px solid #21262d; }
+    .rule-step:last-child { border-bottom: none; }
+    .rule-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; color: #39d0d8; min-width: 24px; line-height: 1; }
+    .rule-body { font-size: 12px; color: #cdd9e5; line-height: 1.7; }
+    .rule-body b { color: #39d0d8; }
+
+    .hint-box { background: #1a1400; border: 1px solid #6a3e00; border-radius: 7px; padding: 8px 11px; font-size: 11px; color: #ffa657; margin: 8px 0; }
+    .hint-box::before { content: "💡 Hint: "; font-family: 'Syne', sans-serif; font-weight: 700; }
+
+    .q-label { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 11px; color: #ffa657; margin-bottom: 5px; letter-spacing: 1px; }
+
+    /* RULES DRAWER COMPONENT STYLES */
+    .drawer-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 999; display: none; opacity: 0; transition: opacity 0.3s ease; backdrop-filter: blur(4px); }
+    .drawer { position: fixed; top: 0; right: -100%; width: 85%; max-width: 440px; height: 100%; background: #161b22; border-left: 2px solid #30363d; box-shadow: -5px 0 25px rgba(0,0,0,0.5); z-index: 1000; transition: right 0.3s cubic-bezier(0.1, 0.9, 0.2, 1); padding: 24px 20px; display: flex; flex-direction: column; }
+    .drawer.open { right: 0; }
+    .drawer-hdr { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; border-bottom: 1px solid #21262d; padding-bottom: 12px; }
+    .drawer-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 14px; color: #ffa657; letter-spacing: 1px; text-transform: uppercase; }
+    .drawer-close { background: none; border: none; color: #8b949e; font-size: 20px; cursor: pointer; font-family: sans-serif; transition: color 0.2s; }
+    .drawer-close:hover { color: #f78166; }
+    .drawer-body { flex: 1; overflow-y: auto; padding-right: 4px; }
+    .dr-sec { background: #0d1117; border: 1px solid #21262d; border-radius: 9px; padding: 12px; margin-bottom: 14px; }
+    .dr-sec h4 { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; color: #58a6ff; margin-bottom: 8px; letter-spacing: 1px; text-transform: uppercase; }
+    .dr-mini-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; font-size: 11px; }
+    .dr-mini-item { background: #161b22; border: 1px solid #30363d; border-radius: 5px; padding: 5px 8px; display: flex; justify-content: space-between; }
+    .dr-mini-lbl { font-weight: bold; color: #7ee787; }
+    .dr-priority-item { display: flex; align-items: center; gap: 8px; font-size: 11px; padding: 5px 0; border-bottom: 1px solid #21262d; }
+    .dr-priority-item:last-child { border-bottom: none; }
+    .dr-prio-num { font-family: 'Syne', sans-serif; font-weight: 800; color: #bc8cff; font-size: 12px; min-width: 16px; }
+    .dr-prio-name { color: #e6edf3; font-weight: 500; }
+    .dr-prio-sfx { color: #ffa657; margin-left: auto; font-family: 'DM Mono', monospace; }
+  </style>
+</head>
+<body>
+<div class="app">
+  <div id="drawerOverlay" class="drawer-overlay" onclick="toggleDrawer(false)"></div>
+  <div id="rulesDrawer" class="drawer">
+    <div class="drawer-hdr">
+      <div class="drawer-title">📋 IUPAC Reference Sheet</div>
+      <button class="drawer-close" onclick="toggleDrawer(false)">×</button>
+    </div>
+    <div class="drawer-body">
+      <div class="dr-sec">
+        <h4>1. Longest Carbon Chain Roots</h4>
+        <div class="dr-mini-grid">
+          <div class="dr-mini-item"><span>1 Carbon</span><span class="dr-mini-lbl">Meth-</span></div>
+          <div class="dr-mini-item"><span>2 Carbons</span><span class="dr-mini-lbl">Eth-</span></div>
+          <div class="dr-mini-item"><span>3 Carbons</span><span class="dr-mini-lbl">Prop-</span></div>
+          <div class="dr-mini-item"><span>4 Carbons</span><span class="dr-mini-lbl">But-</span></div>
+          <div class="dr-mini-item"><span>5 Carbons</span><span class="dr-mini-lbl">Pent-</span></div>
+          <div class="dr-mini-item"><span>6 Carbons</span><span class="dr-mini-lbl">Hex-</span></div>
+          <div class="dr-mini-item"><span>7 Carbons</span><span class="dr-mini-lbl">Hept-</span></div>
+          <div class="dr-mini-item"><span>8 Carbons</span><span class="dr-mini-lbl">Oct-</span></div>
+        </div>
+      </div>
+
+      <div class="dr-sec">
+        <h4>2. Functional Group Priorities</h4>
+        <div style="font-size: 10px; color: #8b949e; margin-bottom: 8px;">Highest priority gets lowest carbon position number & dictates principal suffix:</div>
+        <div class="dr-priority-item"><span class="dr-prio-num">1</span><span class="dr-prio-name">Carboxylic Acid (-COOH)</span><span class="dr-prio-sfx">-oic acid</span></div>
+        <div class="dr-priority-item"><span class="dr-prio-num">2</span><span class="dr-prio-name">Aldehyde (-CHO)</span><span class="dr-prio-sfx">-al</span></div>
+        <div class="dr-priority-item"><span class="dr-prio-num">3</span><span class="dr-prio-name">Ketone (-CO-)</span><span class="dr-prio-sfx">-one</span></div>
+        <div class="dr-priority-item"><span class="dr-prio-num">4</span><span class="dr-prio-name">Alcohol (-OH)</span><span class="dr-prio-sfx">-ol</span></div>
+        <div class="dr-priority-item"><span class="dr-prio-num">5</span><span class="dr-prio-name">Triple Bond (C≡C)</span><span class="dr-prio-sfx">-yne</span></div>
+        <div class="dr-priority-item"><span class="dr-prio-num">6</span><span class="dr-prio-name">Double Bond (C=C)</span><span class="dr-prio-sfx">-ene</span></div>
+        <div class="dr-priority-item"><span class="dr-prio-num">7</span><span class="dr-prio-name">Single Bond (C-C)</span><span class="dr-prio-sfx">-ane</span></div>
+      </div>
+
+      <div class="dr-sec">
+        <h4>3. Punctuation Assembly Rules</h4>
+        <div style="font-size: 11px; line-height: 1.6; color: #cdd9e5;">
+          • Use <b>hyphens (-)</b> to separate numbers from text words (e.g., <i>propan-2-ol</i>).<br>
+          • Use <b>commas (,)</b> to separate multiple numbers from each other (e.g., <i>2,2-dimethylpropane</i>).<br>
+          • Run words together into a single sequence without blank spaces.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hdr">
+    <div class="badge">Class 10 Chemistry</div>
+    <h1>IUPAC Nomenclature</h1>
+    <p>Master organic structures, paths & rules independently</p>
+  </div>
+
+  <div id="menuView" class="g4">
+    <div class="card blue" onclick="switchView('lookup')">
+      <span class="ci">🔍</span>
+      <span class="ct">Formula Lookup</span>
+      <span class="cs">Query 150+ compounds by name or formula</span>
+    </div>
+    <div class="card orange" onclick="switchView('quizSetup')">
+      <span class="ci">🎯</span>
+      <span class="ct">Challenge Quiz</span>
+      <span class="cs">Test your nomenclature speed</span>
+    </div>
+    <div class="card purple" onclick="openPracticeSetup()">
+      <span class="ci">♾️</span>
+      <span class="ct">Endless Practice</span>
+      <span class="cs">Unlimited problems without timers</span>
+    </div>
+    <div class="card teal" onclick="switchView('guide')">
+      <span class="ci">📖</span>
+      <span class="ct">Learning Guide</span>
+      <span class="cs">Master rules step-by-step</span>
+    </div>
+  </div>
+
+  <div id="lookupView" class="panel" style="display:none;">
+    <div class="plbl b">Formula Lookup System</div>
+    <div class="row">
+      <input type="text" id="lookupInp" class="inp" placeholder="Type name or formula (e.g., ethanol, C2H6O)..." oninput="doLookup()">
+      <button class="btn ghost" onclick="exitToMenu()">Back</button>
+    </div>
+    <div id="lookupResults" class="rbox"></div>
+  </div>
+
+  <div id="quizSetupView" class="panel" style="display:none;">
+    <div class="plbl o">Configure Challenge Quiz</div>
+    
+    <div class="cfg-group">
+      <div class="cfg-label">Select Difficulty</div>
+      <div class="dpills">
+        <div class="dp sel easy" id="diff-easy" onclick="setDiff('easy')">
+          <div class="dpi">🟢</div><div class="dpn">Easy</div><div class="dps">Alkanes & Alkenes</div>
+        </div>
+        <div class="dp" id="diff-medium" onclick="setDiff('medium')">
+          <div class="dpi">🟠</div><div class="dpn">Medium</div><div class="dps">Alcohols & Ketones</div>
+        </div>
+        <div class="dp" id="diff-hard" onclick="setDiff('hard')">
+          <div class="dpi">🔴</div><div class="dpn">Hard</div><div class="dps">Acids & Branches</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cfg-group">
+      <div class="cfg-label">Quiz Direction Mode</div>
+      <div class="dpills">
+        <div class="dp sel mode" id="mode-normal" onclick="setQuizDirection('normal')">
+          <div class="dpi">🔬</div><div class="dpn">Structure ➔ Name</div><div class="dps">Type IUPAC strings</div>
+        </div>
+        <div class="dp" id="mode-reverse" onclick="setQuizDirection('reverse')">
+          <div class="dpi">🔄</div><div class="dpn">Name ➔ Structure</div><div class="dps">Multiple choice selection</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="brow" style="margin-top:20px;">
+      <button class="btn ghost" onclick="exitToMenu()">Cancel</button>
+      <button class="btn o" onclick="startQuiz()">Launch Quiz (5 Questions)</button>
+    </div>
+  </div>
+
+  <div id="practiceSetupView" class="panel" style="display:none;">
+    <div class="plbl p">Configure Endless Practice</div>
+    
+    <div class="cfg-group">
+      <div class="cfg-label">Select Pool Filter</div>
+      <div class="dpills">
+        <div class="dp sel easy" id="pdiff-easy" onclick="setPracticeDiff('easy')">
+          <div class="dpi">🟢</div><div class="dpn">Easy</div><div class="dps">Alkanes & Alkenes</div>
+        </div>
+        <div class="dp" id="pdiff-medium" onclick="setPracticeDiff('medium')">
+          <div class="dpi">🟠</div><div class="dpn">Medium</div><div class="dps">Alcohols & Ketones</div>
+        </div>
+        <div class="dp" id="pdiff-hard" onclick="setPracticeDiff('hard')">
+          <div class="dpi">🔴</div><div class="dpn">Hard</div><div class="dps">Acids & Branches</div>
+        </div>
+        <div class="dp" id="pdiff-mixed" onclick="setPracticeDiff('mixed')">
+          <div class="dpi">🔀</div><div class="dpn">Mixed Pool</div><div class="dps">All Difficulties</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cfg-group">
+      <div class="cfg-label">Practice Direction Mode</div>
+      <div class="dpills">
+        <div class="dp sel mode" id="pmode-normal" onclick="setPracticeDirection('normal')">
+          <div class="dpi">🔬</div><div class="dpn">Structure ➔ Name</div><div class="dps">Type IUPAC strings</div>
+        </div>
+        <div class="dp" id="pmode-reverse" onclick="setPracticeDirection('reverse')">
+          <div class="dpi">🔄</div><div class="dpn">Name ➔ Structure</div><div class="dps">Multiple choice selection</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="brow" style="margin-top:20px;">
+      <button class="btn ghost" onclick="exitToMenu()">Cancel</button>
+      <button class="btn p" onclick="startPractice()">Start Practice</button>
+    </div>
+  </div>
+
+  <div id="quizView" class="panel" style="display:none;">
+    <div id="quizProgressContainer" class="pbar"><div id="quizProgress" class="pfill o" style="width: 0%;"></div></div>
+    <div id="practiceScoreDisplay" style="display:none; font-family:'Syne', sans-serif; font-size:14px; font-weight:800; color:#bc8cff; text-align:center; margin-bottom:12px;">
+      SCORE: <span id="pScoreVal">0</span> / <span id="pAttemptedVal">0</span>
+    </div>
+
+    <div id="timerContainer" class="timer-wrap">
+      <div class="timer-bar-bg"><div id="timerBar" class="timer-bar safe" style="width:100%;"></div></div>
+      <div id="timerNum" class="timer-num safe">30</div>
+    </div>
+    
+    <div class="qmeta">
+      <span id="quizQuestionNum" class="qn">QUESTION 1 OF 5</span>
+      <div style="display:flex; gap:6px; align-items:center;">
+        <button class="btn ghost" style="padding:4px 10px; font-size:10px; border-radius:20px; font-family:'Syne',sans-serif;" onclick="toggleDrawer(true)">📋 Rules Sheet</button>
+        <span id="quizDifficultyBadge" class="dbg easy">Easy</span>
+      </div>
+    </div>
+
+    <div id="questionContentArea">
+      <div id="layoutNormal" style="display:none;">
+        <div class="qsc">
+          <div class="qsl">Target Structural Details</div>
+          <div id="qCondensed" class="qsc2">CH3-CH3</div>
+          <div id="qExpanded" class="qse">Structure Map</div>
+        </div>
+        <div class="row" style="margin-bottom:14px;">
+          <input type="text" id="quizAnswerInp" class="inp" placeholder="Type correct IUPAC name..." onkeydown="if(event.key==='Enter') submitQuizAns()">
+          <button id="quizSubmitBtn" class="btn o" onclick="submitQuizAns()">Submit</button>
+        </div>
+      </div>
+
+      <div id="layoutReverse" style="display:none;" class="qsc">
+        <div class="rev-qname-box">
+          <div style="font-size:10px; color:#8b949e; letter-spacing:1px; margin-bottom:4px; text-transform:uppercase;">Identify Structure From IUPAC Target Name:</div>
+          <div id="revQuestionName" class="rev-qname">propane</div>
+        </div>
+        <div id="revOptionsContainer" class="rev-opts-grid">
+          </div>
+      </div>
+    </div>
+
+    <div id="quizFeedbackBox"></div>
+    
+    <div class="brow" style="justify-content:space-between; width:100%;">
+      <button id="practiceQuitBtn" class="btn ghost" style="display:none;" onclick="quitPracticeSession()">Quit & Review</button>
+      <div style="flex-grow:1;"></div>
+      <button id="quizNextBtn" class="btn ghost" style="display:none;" onclick="nextQuizQ()">Next Question</button>
+    </div>
+  </div>
+
+  <div id="quizResultView" class="panel" style="display:none;">
+    <div class="qres">
+      <span class="qre">📊</span>
+      <div id="quizScoreText" class="qrs gd">3 / 5</div>
+      <div id="resultSummaryLabel" class="qrl">Challenge Completed Summary</div>
+      <div id="quizRemarkBox" class="rmk"></div>
+      <div id="quizReviewTable" class="rev"></div>
+      <button id="returnMenuBtn" class="btn o" onclick="exitToMenu()">Return to Main Menu</button>
+    </div>
+  </div>
+
+  <div id="guideView" class="panel" style="display:none;">
+    <div class="plbl t">Learning Guide</div>
+    <div class="guide-intro">
+      <div class="guide-intro-title">👋 Welcome, Beginner!</div>
+      <div class="guide-intro-sub">This guide breaks down IUPAC naming into small, clear steps. Start from the top and work your way through — each topic builds on the last. Interactive questions are included to test your understanding as you go.</div>
+    </div>
+    <div class="guide-section-label">📘 Concept Topics — Read & Learn</div>
+    <div id="guideTopicsGrid" class="gtg"></div>
+    <div class="guide-section-label">✏️ Practice Questions — Test Yourself</div>
+    <div id="guidePracticeGrid" class="gtg"></div>
+    <div class="div"></div>
+    <div class="brow"><button class="btn ghost" onclick="exitToMenu()">Back to Menu</button></div>
+  </div>
+
+  <div id="lessonView" class="panel" style="display:none;">
+    <div class="spp" id="lessonPills"></div>
+    <div id="lessonTopicTitle" class="lt">Topic</div>
+    <div id="lessonTopicSub" class="ls">Sub</div>
+    <div id="lessonContentContainer"></div>
+    <div class="brow" style="justify-content:space-between; margin-top:14px;">
+      <button class="btn ghost" onclick="switchView('guide')">Exit Topic</button>
+      <button id="lessonNextBtn" class="btn t" onclick="nextLessonStep()">Next Step</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const DB = {
+  easy: [
+    { name:"methane", formula:"CH4", condensed:"CH4", expanded:"    H\n    |\nH - C - H\n    |\n    H" },
+    { name:"ethane", formula:"C2H6", condensed:"CH3-CH3", expanded:"    H    H\n    |    |\nH - C - C - H\n    |    |\n    H    H" },
+    { name:"propane", formula:"C3H8", condensed:"CH3-CH2-CH3", expanded:"    H    H    H\n    |    |    |\nH - C - C - C - H\n    |    |    |\n    H    H    H" },
+    { name:"butane", formula:"C4H10", condensed:"CH3-CH2-CH2-CH3", expanded:"CH3-CH2-CH2-CH2-CH3 (4 carbons)" },
+    { name:"pentane", formula:"C5H12", condensed:"CH3(CH2)3CH3", expanded:"CH3-CH2-CH2-CH2-CH3 (5 carbons)" },
+    { name:"hexane", formula:"C6H14", condensed:"CH3(CH2)4CH3", expanded:"CH3-CH2-CH2-CH2-CH2-CH3 (6 carbons)" },
+    { name:"heptane", formula:"C7H16", condensed:"CH3(CH2)5CH3", expanded:"CH3-CH2-CH2-CH2-CH2-CH2-CH3 (7 carbons)" },
+    { name:"octane", formula:"C8H18", condensed:"CH3(CH2)6CH3", expanded:"CH3-(CH2)6-CH3 (8 carbons)" },
+    { name:"nonane", formula:"C9H20", condensed:"CH3(CH2)7CH3", expanded:"CH3-(CH2)7-CH3 (9 carbons)" },
+    { name:"decane", formula:"C10H22", condensed:"CH3(CH2)8CH3", expanded:"CH3-(CH2)8-CH3 (10 carbons)" },
+    { name:"ethene", formula:"C2H4", condensed:"CH2=CH2", expanded:"H   H\n |   |\nC = C\n |   |\nH   H" },
+    { name:"propene", formula:"C3H6", condensed:"CH2=CH-CH3", expanded:"H2C = CH - CH3" },
+    { name:"but-1-ene", formula:"C4H8", condensed:"CH2=CH-CH2-CH3", expanded:"H2C = CH - CH2 - CH3" },
+    { name:"but-2-ene", formula:"C4H8", condensed:"CH3-CH=CH-CH3", expanded:"CH3 - CH = CH - CH3" },
+    { name:"pent-1-ene", formula:"C5H10", condensed:"CH2=CHCH2CH2CH3", expanded:"H2C = CH - CH2 - CH2 - CH3" },
+    { name:"ethyne", formula:"C2H2", condensed:"HC≡CH", expanded:"H - C ≡ C - H" },
+    { name:"propyne", formula:"C3H4", condensed:"HC≡C-CH3", expanded:"H - C ≡ C - CH3" },
+    { name:"but-1-yne", formula:"C4H6", condensed:"HC≡C-CH2-CH3", expanded:"H - C ≡ C - CH2 - CH3" },
+    { name:"cyclopropane", formula:"C3H6", condensed:"cyclo-C3H6", expanded:"  CH2\n /     \\\nCH2 - CH2" },
+    { name:"cyclohexane", formula:"C6H12", condensed:"cyclo-C6H12", expanded:"  CH2-CH2\n /         \\\nCH2         CH2\n \\         /\n  CH2-CH2" }
+  ],
+  medium: [
+    { name:"methanol", formula:"CH4O", condensed:"CH3-OH", expanded:"    H\n    |\nH - C - O - H\n    |\n    H" },
+    { name:"ethanol", formula:"C2H6O", condensed:"CH3-CH2-OH", expanded:"    H    H\n    |    |\nH - C - C - O - H\n    |    |\n    H    H" },
+    { name:"propan-1-ol", formula:"C3H8O", condensed:"CH3-CH2-CH2-OH", expanded:"CH3 - CH2 - CH2 - OH" },
+    { name:"propan-2-ol", formula:"C3H8O", condensed:"CH3-CH(OH)-CH3", expanded:"         OH\n         |\nCH3 - CH - CH3" },
+    { name:"butan-1-ol", formula:"C4H10O", condensed:"CH3CH2CH2CH2-OH", expanded:"CH3 - CH2 - CH2 - CH2 - OH" },
+    { name:"methanal", formula:"CH2O", condensed:"HCHO", expanded:"    O\n    ||\nH - C - H" },
+    { name:"ethanal", formula:"C2H4O", condensed:"CH3-CHO", expanded:"         O\n         ||\nCH3 - C - H" },
+    { name:"propanal", formula:"C3H6O", condensed:"CH3-CH2-CHO", expanded:"               O\n               ||\nCH3 - CH2 - C - H" },
+    { name:"propan-2-one", formula:"C3H6O", condensed:"CH3-CO-CH3", expanded:"         O\n         ||\nCH3 - C - CH3" },
+    { name:"butan-2-one", formula:"C4H8O", condensed:"CH3-CO-CH2-CH3", expanded:"         O\n         ||\nCH3 - C - CH2 - CH3" },
+    { name:"chloromethane", formula:"CH3Cl", condensed:"CH3-Cl", expanded:"    H\n    |\nH - C - Cl\n    |\n    H" },
+    { name:"bromoethane", formula:"C2H5Br", condensed:"CH3-CH2-Br", expanded:"CH3 - CH2 - Br" },
+    { name:"methylamine", formula:"CH5N", condensed:"CH3-NH2", expanded:"    H\n    |\nH - C - NH2\n    |\n    H" }
+  ],
+  hard: [
+    { name:"methanoic acid", formula:"CH2O2", condensed:"HCOOH", expanded:"    O\n    ||\nH - C - O - H" },
+    { name:"ethanoic acid", formula:"C2H4O2", condensed:"CH3-COOH", expanded:"         O\n         ||\nCH3 - C - O - H" },
+    { name:"propanoic acid", formula:"C3H6O2", condensed:"CH3-CH2-COOH", expanded:"               O\n               ||\nCH3 - CH2 - C - O - H" },
+    { name:"methyl ethanoate", formula:"C3H6O2", condensed:"CH3COOCH3", expanded:"         O\n         ||\nCH3 - C - O - CH3" },
+    { name:"ethyl ethanoate", formula:"C4H8O2", condensed:"CH3COOC2H5", expanded:"         O\n         ||\nCH3 - C - O - CH2-CH3" },
+    { name:"2-methylpropane", formula:"C4H10", condensed:"(CH3)2CHCH3", expanded:"    CH3\n     |\nCH3-CH-CH3" },
+    { name:"2-methylbutane", formula:"C5H12", condensed:"(CH3)2CHCH2CH3", expanded:"    CH3\n     |\nCH3-CH-CH2-CH3" },
+    { name:"2,2-dimethylpropane", formula:"C5H12", condensed:"C(CH3)4", expanded:"    CH3\n     |\nCH3-C-CH3\n     |\n    CH3" },
+    { name:"2,3-dimethylbutane", formula:"C6H14", condensed:"(CH3)2CH-CH(CH3)2", expanded:"CH3  CH3\n  |    |\nCH - CH\nCH3  CH3" },
+    { name:"2-methylpropan-1-ol", formula:"C4H10O", condensed:"(CH3)2CHCH2OH", expanded:"    CH3\n     |\nCH3-CH-CH2-OH" },
+    { name:"2-methylpropanoic acid", formula:"C4H8O2", condensed:"(CH3)2CH-COOH", expanded:"    CH3\n     |\nCH3-CH-COOH" },
+    { name:"benzene", formula:"C6H6", condensed:"C6H6", expanded:"Aromatic ring: 6 carbons with alternating double bonds" },
+    { name:"ethane-1,2-diol", formula:"C2H6O2", condensed:"HOCH2-CH2OH", expanded:"HO-CH2-CH2-OH" },
+    { name:"glycerol", formula:"C3H8O3", condensed:"HOCH2-CH(OH)-CH2OH", expanded:"HO-CH2-CH(OH)-CH2-OH" }
+  ]
+};
+const ALL_COMPOUNDS = [...DB.easy, ...DB.medium, ...DB.hard];
+
+const TOPICS = [
+  {
+    id: 0, icon: "⚗️", title: "Hydrocarbons & Bond Types", sub: "Alkane, Alkene, Alkyne — the basics",
+    badge: "beginner",
+    steps: [
+      {
+        type:"lesson", h:"What is a Hydrocarbon?",
+        body:"A hydrocarbon is a molecule made of only Carbon (C) and Hydrogen (H) atoms. Every organic compound you'll name in Class 10 is based on a hydrocarbon chain.<br><br>There are three types, based on the kind of bond between carbon atoms:",
+        bondCards: true,
+        hi:"<b>Key Idea:</b> The bond type changes the formula AND the name suffix.",
+        ex:"Alkane (single): CₙH₂ₙ₊₂  →  e.g. ethane C₂H₆\nAlkene (double): CₙH₂ₙ    →  e.g. ethene C₂H₄\nAlkyne (triple): CₙH₂ₙ₋₂  →  e.g. ethyne C₂H₂",
+        rules: null
+      },
+      {
+        type:"mcq", q:"A compound has formula C₄H₈. Which bond type does it contain?",
+        opts:["Single bond only (Alkane)","At least one double bond (Alkene)","At least one triple bond (Alkyne)","Cannot be determined"],
+        ans:1, exp:"Formula CₙH₂ₙ → n=4 gives C₄H₈ → matches <b>Alkene</b> general formula."
+      },
+      {
+        type:"fill", q:"A compound has a triple bond (C≡C) between its carbons. What suffix does it use?",
+        ans:"yne", exp:"Triple bonds get the suffix <b>-yne</b> (from Alkyne)."
+      }
+    ]
+  },
+  {
+    id: 1, icon: "🔢", title: "Carbon Counting Prefixes", sub: "Meth, Eth, Prop, But up to Dec",
+    badge: "beginner",
+    steps: [
+      {
+        type:"lesson", h:"Naming the Parent Chain Length",
+        body:"The core prefix of an IUPAC name tells you exactly <b>how many connected carbon atoms</b> are in the longest continuous chain.<br><br>You must memorize these standard prefixes:",
+        prefixGrid: true,
+        hi:"Always count the carbons first to determine the foundation word of your structure!",
+        ex:"1 Carbon  → Methane\n3 Carbons → Propane\n6 Carbons → Hexane",
+        rules: null
+      },
+      {
+        type:"mcq", q:"What is the prefix name for a chain of 4 carbon atoms?",
+        opts:["Prop-","But-","Pent-","Meth-"],
+        ans:1, exp:"4 Carbons correspond to the prefix <b>But-</b>."
+      },
+      {
+        type:"fill", q:"Type the prefix for a molecule containing 2 carbon atoms (include the hyphen at the end, e.g., meth-):",
+        ans:"eth-", exp:"2 Carbons give the prefix <b>eth-</b>."
+      }
+    ]
+  },
+  {
+    id: 2, icon: "🧪", title: "Functional Groups Intro", sub: "Alcohols, Aldehydes, Ketones, Carboxylic Acids",
+    badge: "beginner",
+    steps: [
+      {
+        type:"lesson", h:"What are Functional Groups?",
+        body:"A functional group is a specific atom or collection of atoms attached to the carbon chain that completely dictates how the molecule behaves. In IUPAC naming, it determines the final part of the name suffix.",
+        fgTable: true,
+        hi:"If a functional group is present, it takes priority when deciding which side of the chain to start counting carbon positions from!",
+        ex:"CH₃-CH₂-OH  → Contains -OH → Ethanol\nCH₃-COOH   → Contains -COOH → Ethanoic acid",
+        rules: null
+      },
+      {
+        type:"mcq", q:"Which functional group does a molecule with the suffix '-one' belong to?",
+        opts:["Alcohol","Aldehyde","Ketone","Carboxylic Acid"],
+        ans:2, exp:"The suffix <b>-one</b> implies a <b>Ketone</b> group (C=O sandwiched between carbons)."
+      },
+      {
+        type:"fill", q:"What suffix do you use for a Carboxylic Acid (-COOH group)?",
+        ans:"oic acid", exp:"Carboxylic acids end with the suffix expression <b>oic acid</b>."
+      }
+    ]
+  },
+  {
+    id: 3, icon: "📐", title: "The Standard 3-Step Assembly Rule", sub: "How to assemble names systematically",
+    badge: "practice",
+    steps: [
+      {
+        type:"lesson", h:"Putting It Together Step-by-Step",
+        body:"To map out any IUPAC name without making errors, follow this exact mental checklist:",
+        ruleSteps: true,
+        hi:"Always handle number placements carefully so it clearly points directly to where a double bond or functional group lives!",
+        ex:"Structure: CH₃-CH(OH)-CH₃\n1. Parent chain: 3 Carbons → prop\n2. Primary bond: All single → an\n3. Functional group: -OH at Carbon 2 → 2-ol\nResult: propan-2-ol",
+        rules: null
+      },
+      {
+        type:"mcq", q:"When assembling a name with multiple structural parts, what separation character goes between a number and a word?",
+        opts:["A space","A comma","A hyphen (-)","No character"],
+        ans:2, exp:"IUPAC rules mandate that <b>hyphens</b> separate letters from numbers (e.g., but-1-ene)."
+      }
+    ]
+  }
+];
+
+const PRACTICE_QUESTIONS = [
+  { id: 101, q:"Name an alkane with 3 carbon atoms.", ans:"propane", h:"3 Carbons + single bonds" },
+  { id: 102, q:"What is the official IUPAC name for organic wood alcohol with formula CH₃OH?", ans:"methanol", h:"1 Carbon parent chain + alcohol group" },
+  { id: 103, q:"Name the alkene that contains exactly 2 carbon atoms.", ans:"ethene", h:"2 Carbons linked by a double bond" },
+  { id: 104, q:"Name the primary component of vinegar, which is a 2-carbon carboxylic acid.", ans:"ethanoic acid", h:"2 Carbons terminating in a -COOH group" }
+];
+
+let currentView = 'menuView';
+let quizMode = 'challenge'; 
+let currentDiff = 'easy';
+let currentPracticeDiff = 'easy';
+let quizDirection = 'normal'; // 'normal' = Structure -> Name, 'reverse' = Name -> Structure
+let practiceDirection = 'normal';
+let activeDirection = 'normal'; // Mode applied to active running session
+
+let quizPool = [];
+let quizIdx = 0;
+let quizScore = 0;
+let quizHistory = [];
+let currentQuizItem = null;
+let quizTimerId = null;
+let timeLeft = 30;
+
+let currentTopic = null;
+let lessonStepIdx = 0;
+let topicAnswers = {};
+
+function toggleDrawer(open) {
+  const overlay = document.getElementById('drawerOverlay');
+  const drawer = document.getElementById('rulesDrawer');
+  if (open) {
+    overlay.style.display = 'block';
+    setTimeout(() => { overlay.style.opacity = '1'; }, 10);
+    drawer.classList.add('open');
+  } else {
+    overlay.style.opacity = '0';
+    drawer.classList.remove('open');
+    setTimeout(() => { overlay.style.display = 'none'; }, 300);
+  }
+}
+
+function switchView(id) {
+  document.getElementById(currentView).style.display = 'none';
+  
+  if (id === 'lookup') {
+    document.getElementById('lookupView').style.display = 'block';
+    currentView = 'lookupView';
+    document.getElementById('lookupInp').value = '';
+    document.getElementById('lookupResults').innerHTML = '';
+  } else if (id === 'quizSetup') {
+    document.getElementById('quizSetupView').style.display = 'block';
+    currentView = 'quizSetupView';
+    setDiff('easy');
+    setQuizDirection('normal');
+  } else if (id === 'guide') {
+    document.getElementById('guideView').style.display = 'block';
+    currentView = 'guideView';
+    renderGuideMenus();
+  } else {
+    const targetEl = document.getElementById(id);
+    if (targetEl) {
+      targetEl.style.display = 'block';
+      currentView = id;
+    }
+  }
+}
+
+function exitToMenu() {
+  clearInterval(quizTimerId);
+  document.getElementById(currentView).style.display = 'none';
+  document.getElementById('menuView').style.display = 'grid';
+  currentView = 'menuView';
+}
+
+function cleanString(str) {
+  if (!str) return "";
+  return str.trim().toLowerCase().replace(/\s+/g, ' ');
+}
+
+function doLookup() {
+  const val = cleanString(document.getElementById('lookupInp').value);
+  const container = document.getElementById('lookupResults');
+  container.innerHTML = '';
+  
+  if(!val) return;
+  
+  const hits = ALL_COMPOUNDS.filter(c => 
+    cleanString(c.name).includes(val) || 
+    cleanString(c.formula).includes(val) || 
+    cleanString(c.condensed).includes(val)
+  );
+  
+  if(hits.length === 0) {
+    container.innerHTML = '<div class="nf">No matching organic structures found. Try another query!</div>';
+    return;
+  }
+  
+  hits.forEach(h => {
+    const el = document.createElement('div');
+    el.className = 'rsec';
+    el.innerHTML = `
+      <div class="sri" onclick="let n = this.nextElementSibling; n.style.display = n.style.display==='none'?'block':'none'">
+        <div>
+          <div class="sn">${h.name}</div>
+          <div class="sd">Formula: <span class="sf">${h.formula}</span> | Structure: ${h.condensed}</div>
+        </div>
+        <span style="font-size:10px; color:#484f58;">▼ Details</span>
+      </div>
+      <div style="display:none; padding:4px 4px 12px 4px;">
+        <div class="rlbl">Structural Geometry Map</div>
+        <div class="sbox">${h.expanded}</div>
+      </div>
+    `;
+    container.appendChild(el);
+  });
+}
+
+function setDiff(d) {
+  ['easy','medium','hard'].forEach(x => {
+    const target = document.getElementById(`diff-${x}`);
+    if (target) target.className = 'dp';
+  });
+  const selTarget = document.getElementById(`diff-${d}`);
+  if (selTarget) selTarget.className = `dp sel ${d}`;
+  currentDiff = d;
+}
+
+function setQuizDirection(dir) {
+  ['normal', 'reverse'].forEach(x => {
+    document.getElementById(`mode-${x}`).className = 'dp';
+  });
+  document.getElementById(`mode-${dir}`).className = 'dp sel mode';
+  quizDirection = dir;
+}
+
+function setPracticeDirection(dir) {
+  ['normal', 'reverse'].forEach(x => {
+    document.getElementById(`pmode-${x}`).className = 'dp';
+  });
+  document.getElementById(`pmode-${dir}`).className = 'dp sel mode';
+  practiceDirection = dir;
+}
+
+function startQuiz() {
+  quizMode = 'challenge';
+  activeDirection = quizDirection;
+  
+  document.getElementById('quizProgressContainer').style.display = 'block';
+  document.getElementById('practiceScoreDisplay').style.display = 'none';
+  document.getElementById('timerContainer').style.display = 'flex';
+  document.getElementById('practiceQuitBtn').style.display = 'none';
+  
+  const pool = [...DB[currentDiff]];
+  quizPool = [];
+  for(let i=0; i<5; i++) {
+    if(pool.length === 0) break;
+    const rng = Math.floor(Math.random() * pool.length);
+    quizPool.push(pool.splice(rng, 1)[0]);
+  }
+  
+  quizIdx = 0;
+  quizScore = 0;
+  quizHistory = [];
+  
+  document.getElementById(currentView).style.display = 'none';
+  document.getElementById('quizView').style.display = 'block';
+  currentView = 'quizView';
+  
+  showQuizQuestion();
+}
+
+function openPracticeSetup() {
+  document.getElementById(currentView).style.display = 'none';
+  document.getElementById('practiceSetupView').style.display = 'block';
+  currentView = 'practiceSetupView';
+  setPracticeDiff('easy');
+  setPracticeDirection('normal');
+}
+
+function setPracticeDiff(d) {
+  ['easy','medium','hard','mixed'].forEach(x => {
+    const target = document.getElementById(`pdiff-${x}`);
+    if (target) target.className = 'dp';
+  });
+  const selTarget = document.getElementById(`pdiff-${d}`);
+  if (selTarget) selTarget.className = `dp sel ${d}`;
+  currentPracticeDiff = d;
+}
+
+function startPractice() {
+  quizMode = 'infinite';
+  activeDirection = practiceDirection;
+  
+  document.getElementById('quizProgressContainer').style.display = 'none';
+  document.getElementById('practiceScoreDisplay').style.display = 'block';
+  document.getElementById('timerContainer').style.display = 'none';
+  document.getElementById('practiceQuitBtn').style.display = 'block';
+  
+  quizIdx = 0;
+  quizScore = 0;
+  quizHistory = []; 
+  
+  document.getElementById(currentView).style.display = 'none';
+  document.getElementById('quizView').style.display = 'block';
+  currentView = 'quizView';
+  
+  generateNextPracticeQuestion();
+}
+
+// Generate unique distraction choices from dataset pool
+function buildReverseOptions(correctItem) {
+  let pool = ALL_COMPOUNDS.filter(c => c.name !== correctItem.name);
+  let options = [correctItem];
+  
+  while(options.length < 4 && pool.length > 0) {
+    let r = Math.floor(Math.random() * pool.length);
+    options.push(pool.splice(r, 1)[0]);
+  }
+  
+  // Shuffle array options dynamically
+  return options.sort(() => Math.random() - 0.5);
+}
+
+function generateNextPracticeQuestion() {
+  let sourcePool = [];
+  let displayDiff = "";
+  
+  if (currentPracticeDiff === 'mixed') {
+    const categories = ['easy', 'medium', 'hard'];
+    displayDiff = categories[Math.floor(Math.random() * categories.length)];
+    sourcePool = DB[displayDiff];
+  } else {
+    displayDiff = currentPracticeDiff;
+    sourcePool = DB[displayDiff];
+  }
+  
+  const rng = Math.floor(Math.random() * sourcePool.length);
+  currentQuizItem = sourcePool[rng];
+  
+  setupQuestionWorkspaceLayout(displayDiff, `PRACTICE ITEM ${quizIdx + 1}`, "qn p");
+}
+
+function showQuizQuestion() {
+  if(quizIdx >= quizPool.length) {
+    endQuizChallenge();
+    return;
+  }
+  
+  currentQuizItem = quizPool[quizIdx];
+  document.getElementById('quizProgress').style.width = `${(quizIdx / quizPool.length) * 100}%`;
+  
+  setupQuestionWorkspaceLayout(currentDiff, `QUESTION ${quizIdx + 1} OF ${quizPool.length}`, "qn");
+  startQuestionTimer();
+}
+
+function setupQuestionWorkspaceLayout(difficultyStr, labelText, labelClass) {
+  document.getElementById('quizQuestionNum').innerText = labelText;
+  document.getElementById('quizQuestionNum').className = labelClass;
+  
+  const b = document.getElementById('quizDifficultyBadge');
+  b.innerText = difficultyStr;
+  b.className = `dbg ${difficultyStr}`;
+  
+  document.getElementById('quizFeedbackBox').innerHTML = '';
+  document.getElementById('quizNextBtn').style.display = 'none';
+
+  if (activeDirection === 'normal') {
+    document.getElementById('layoutNormal').style.display = 'block';
+    document.getElementById('layoutReverse').style.display = 'none';
+    
+    document.getElementById('qCondensed').innerText = currentQuizItem.condensed;
+    document.getElementById('qExpanded').innerText = currentQuizItem.expanded;
+    
+    document.getElementById('quizAnswerInp').value = '';
+    document.getElementById('quizAnswerInp').disabled = false;
+    document.getElementById('quizSubmitBtn').disabled = false;
+  } else {
+    document.getElementById('layoutNormal').style.display = 'none';
+    document.getElementById('layoutReverse').style.display = 'block';
+    
+    document.getElementById('revQuestionName').innerText = currentQuizItem.name;
+    
+    const opts = buildReverseOptions(currentQuizItem);
+    const container = document.getElementById('revOptionsContainer');
+    container.innerHTML = '';
+    
+    opts.forEach((opt, idx) => {
+      const card = document.createElement('div');
+      card.className = 'rev-opt-card';
+      card.innerHTML = `
+        <span class="rev-opt-idx">${String.fromCharCode(65 + idx)}</span>
+        <div>
+          <div style="font-weight:700; color:#e6edf3;">${opt.condensed}</div>
+          <div style="font-size:11px; color:#8b949e; margin-top:2px;">Empirical Formula: ${opt.formula}</div>
+          <div class="rev-opt-details"><span style="color:#7ee787;">Structural Map:</span>\n${opt.expanded}</div>
+        </div>
+      `;
+      card.onclick = () => selectReverseOption(card, opt, container);
+      container.appendChild(card);
+    });
+  }
+  
+  if (quizMode === 'infinite') {
+    document.getElementById('pScoreVal').innerText = quizScore;
+    document.getElementById('pAttemptedVal').innerText = quizIdx;
+  }
+}
+
+function selectReverseOption(selectedCard, chosenItem, containerEl) {
+  clearInterval(quizTimerId);
+  
+  // Freeze and disable other alternative action cards
+  const cards = containerEl.querySelectorAll('.rev-opt-card');
+  cards.forEach(c => c.classList.add('disabled'));
+  
+  let isCorrect = (chosenItem.name === currentQuizItem.name);
+  let status = "no";
+  
+  if (isCorrect) {
+    quizScore++;
+    status = "ok";
+    selectedCard.classList.add('correct');
+  } else {
+    selectedCard.classList.add('wrong');
+    // Highlight correct target explicitly
+    cards.forEach(c => {
+      if(c.innerHTML.includes(currentQuizItem.condensed)) {
+        c.classList.add('correct');
+      }
+    });
+  }
+  
+  quizHistory.push({ 
+    item: currentQuizItem, 
+    userAns: chosenItem.condensed, 
+    status: status 
+  });
+  
+  const fb = document.getElementById('quizFeedbackBox');
+  if (isCorrect) {
+    fb.innerHTML = `
+      <div class="fb ok">
+        <div class="fbt">🎉 Correct! Formula Match Confirmed.</div>
+        <div class="fba">The chemical structural arrangement details match cleanly!</div>
+      </div>
+    `;
+  } else {
+    fb.innerHTML = `
+      <div class="fb no">
+        <div class="fbt">❌ Incorrect Identification</div>
+        <div class="fba">Target formula was: <span>${currentQuizItem.condensed}</span>. Check the open maps above.</div>
+      </div>
+    `;
+  }
+  
+  quizIdx++;
+  if (quizMode === 'infinite') {
+    document.getElementById('pScoreVal').innerText = quizScore;
+    document.getElementById('pAttemptedVal').innerText = quizIdx;
+  }
+  document.getElementById('quizNextBtn').style.display = 'block';
+}
+
+function startQuestionTimer() {
+  clearInterval(quizTimerId);
+  timeLeft = 30;
+  updateTimerUI();
+  
+  quizTimerId = setInterval(() => {
+    timeLeft--;
+    updateTimerUI();
+    if(timeLeft <= 0) {
+      clearInterval(quizTimerId);
+      handleQuizTimeout();
+    }
+  }, 1000);
+}
+
+function updateTimerUI() {
+  const bar = document.getElementById('timerBar');
+  const num = document.getElementById('timerNum');
+  const pct = (timeLeft / 30) * 100;
+  
+  if (bar) bar.style.width = `${pct}%`;
+  if (num) num.innerText = timeLeft;
+  
+  if (bar) bar.className = 'timer-bar ' + (timeLeft > 15 ? 'safe' : timeLeft > 7 ? 'warn' : 'danger');
+  if (num) num.className = 'timer-num ' + (timeLeft > 15 ? 'safe' : timeLeft > 7 ? 'warn' : 'danger');
+}
+
+function handleQuizTimeout() {
+  if (activeDirection === 'normal') {
+    document.getElementById('quizAnswerInp').disabled = true;
+    document.getElementById('quizSubmitBtn').disabled = true;
+  } else {
+    const cards = document.getElementById('revOptionsContainer').querySelectorAll('.rev-opt-card');
+    cards.forEach(c => {
+      c.classList.add('disabled');
+      if(c.innerHTML.includes(currentQuizItem.condensed)) c.classList.add('correct');
+    });
+  }
+  
+  quizHistory.push({ item: currentQuizItem, userAns: "[TIMEOUT]", status: "no" });
+  
+  const fb = document.getElementById('quizFeedbackBox');
+  fb.innerHTML = `
+    <div class="fb no">
+      <div class="fbt">⏳ Time ran out!</div>
+      <div class="fba">The verified assignment was: <span>${activeDirection === 'normal' ? currentQuizItem.name : currentQuizItem.condensed}</span></div>
+    </div>
+  `;
+  
+  quizIdx++;
+  document.getElementById('quizNextBtn').style.display = 'block';
+}
+
+function submitQuizAns() {
+  clearInterval(quizTimerId);
+  
+  const rawInp = document.getElementById('quizAnswerInp').value;
+  const userAnsClean = cleanString(rawInp);
+  const correctClean = cleanString(currentQuizItem.name);
+  
+  document.getElementById('quizAnswerInp').disabled = true;
+  document.getElementById('quizSubmitBtn').disabled = true;
+  
+  let isCorrect = (userAnsClean === correctClean);
+  let status = "no";
+  
+  if(isCorrect) {
+    quizScore++;
+    status = "ok";
+  }
+  
+  quizHistory.push({ item: currentQuizItem, userAns: rawInp || "[Blank]", status: status });
+  
+  const fb = document.getElementById('quizFeedbackBox');
+  if(isCorrect) {
+    fb.innerHTML = `
+      <div class="fb ok">
+        <div class="fbt">🎉 Correct! Excellent logic.</div>
+        <div class="fba">Matches target: <span>${currentQuizItem.name}</span></div>
+      </div>
+    `;
+  } else {
+    fb.innerHTML = `
+      <div class="fb no">
+        <div class="fbt">❌ Incorrect Naming</div>
+        <div class="fba">The correct target sequence was: <span>${currentQuizItem.name}</span></div>
+      </div>
+    `;
+  }
+  
+  quizIdx++;
+  if (quizMode === 'infinite') {
+    document.getElementById('pScoreVal').innerText = quizScore;
+    document.getElementById('pAttemptedVal').innerText = quizIdx;
+  }
+  document.getElementById('quizNextBtn').style.display = 'block';
+}
+
+function nextQuizQ() {
+  if (quizMode === 'infinite') {
+    generateNextPracticeQuestion();
+  } else {
+    showQuizQuestion();
+  }
+}
+
+function endQuizChallenge() {
+  document.getElementById(currentView).style.display = 'none';
+  document.getElementById('quizResultView').style.display = 'block';
+  currentView = 'quizResultView';
+
+  document.getElementById('resultSummaryLabel').innerText = "Challenge Completed Summary";
+  
+  const txt = document.getElementById('quizScoreText');
+  txt.innerText = `${quizScore} / ${quizPool.length}`;
+  
+  let pct = (quizScore / quizPool.length) * 100;
+  if(pct === 100) txt.className = "qrs pf";
+  else if(pct >= 70) txt.className = "qrs gd";
+  else if(pct >= 40) txt.className = "qrs ok";
+  else txt.className = "qrs pr";
+  
+  let rmk = document.getElementById('quizRemarkBox');
+  if(pct === 100) {
+    rmk.innerHTML = '<div class="rmkh">👑 Perfect Mastery!</div>Incredible work! You nailed every structural combination in this bracket tier.';
+  } else if(pct >= 60) {
+    rmk.innerHTML = '<div class="rmkh">✨ Strong Performance</div>Great job! You have a firm grasp of parent roots and functional chains. Keep refining.';
+  } else {
+    rmk.innerHTML = '<div class="rmkh">📚 Keep Practicing</div>Organic structures require careful tracking. Review the step rules in the Learning Guide anytime!';
+  }
+  
+  buildReviewTable();
+}
+
+function quitPracticeSession() {
+  clearInterval(quizTimerId);
+  
+  document.getElementById(currentView).style.display = 'none';
+  document.getElementById('quizResultView').style.display = 'block';
+  currentView = 'quizResultView';
+  
+  document.getElementById('resultSummaryLabel').innerText = "Practice Session Summary Table";
+  document.getElementById('quizScoreText').innerText = `${quizScore} Correct`;
+  document.getElementById('quizScoreText').className = "qrs gd";
+  
+  let rmk = document.getElementById('quizRemarkBox');
+  rmk.innerHTML = `<div class="rmkh">Practice Run Completed</div>Excellent job practicing at your own pace! You successfully processed <b>${quizIdx}</b> total formulas during this learning block. Review your steps down below to keep mastering chemistry.`;
+  
+  buildReviewTable();
+}
+
+function buildReviewTable() {
+  const table = document.getElementById('quizReviewTable');
+  table.innerHTML = `
+    <div class="rr hd">
+      <div class="rn">#</div>
+      <div class="rq">Target Query</div>
+      <div class="ra">Your Submission</div>
+      <div style="text-align:right;">Solution Target</div>
+    </div>
+  `;
+  
+  quizHistory.forEach((h, idx) => {
+    const row = document.createElement('div');
+    row.className = 'rr';
+    
+    let targetQueryDisplay = activeDirection === 'normal' ? h.item.condensed : h.item.name;
+    let finalTargetAnswer = activeDirection === 'normal' ? h.item.name : h.item.condensed;
+    
+    row.innerHTML = `
+      <div class="rn">${idx + 1}</div>
+      <div class="rq" style="color:#7ee787;">${targetQueryDisplay}</div>
+      <div class="ra ${h.status}">${h.userAns}</div>
+      <div style="text-align:right; font-weight:700; color:#58a6ff;">${finalTargetAnswer}</div>
+    `;
+    table.appendChild(row);
+  });
+}
+
+function renderGuideMenus() {
+  const topicsGrid = document.getElementById('guideTopicsGrid');
+  const practiceGrid = document.getElementById('guidePracticeGrid');
+  
+  if (!topicsGrid || !practiceGrid) return;
+  
+  topicsGrid.innerHTML = '';
+  practiceGrid.innerHTML = '';
+  
+  TOPICS.forEach(t => {
+    const card = document.createElement('div');
+    card.className = 'gtc';
+    card.onclick = () => startLesson(t.id);
+    card.innerHTML = `
+      <span class="gtc-badge ${t.badge}">${t.badge}</span>
+      <div class="gtn">TOPIC</div>
+      <div class="gtt">${t.icon} ${t.title}</div>
+      <div class="gts">${t.sub}</div>
+    `;
+    topicsGrid.appendChild(card);
+  });
+  
+  PRACTICE_QUESTIONS.forEach(pq => {
+    const card = document.createElement('div');
+    card.className = 'gtc';
+    card.onclick = () => openStandalonePractice(pq.id);
+    card.innerHTML = `
+      <div class="gtn">PRACTICE</div>
+      <div class="gtt">✏️ Question #${pq.id}</div>
+      <div class="gts">${pq.q.substring(0, 45)}...</div>
+    `;
+    practiceGrid.appendChild(card);
+  });
+}
+
+function startLesson(tid) {
+  currentTopic = TOPICS.find(t => t.id === tid);
+  lessonStepIdx = 0;
+  topicAnswers = {};
+  
+  document.getElementById(currentView).style.display = 'none';
+  document.getElementById('lessonView').style.display = 'block';
+  currentView = 'lessonView';
+
+  const pills = document.getElementById('lessonPills');
+  pills.innerHTML = '';
+  currentTopic.steps.forEach((s, idx) => {
+    const p = document.createElement('div');
+    p.className = 'sp';
+    p.id = `lpill-${idx}`;
+    pills.appendChild(p);
+  });
+  
+  showLessonStep();
+}
+
+function showLessonStep() {
+  const steps = currentTopic.steps;
+  
+  currentTopic.steps.forEach((s, idx) => {
+    const p = document.getElementById(`lpill-${idx}`);
+    if (p) {
+      if(idx <= lessonStepIdx) p.className = 'sp d';
+      else p.className = 'sp';
+    }
+  });
+  
+  document.getElementById('lessonTopicTitle').innerText = currentTopic.title;
+  document.getElementById('lessonTopicSub').innerText = `Step ${lessonStepIdx + 1} of ${steps.length}`;
+  
+  const step = steps[lessonStepIdx];
+  const container = document.getElementById('lessonContentContainer');
+  container.innerHTML = '';
+  
+  const block = document.createElement('div');
+  block.className = 'lc';
+  
+  if(step.type === 'lesson') {
+    block.innerHTML = `
+      <h3>${step.h}</h3>
+      <p>${step.body}</p>
+    `;
+    
+    if(step.bondCards) {
+      const g = document.createElement('div');
+      g.className = 'bond-grid';
+      g.innerHTML = `
+        <div class="bond-card single"><div class="bc-type">Alkane</div><div class="bc-sym">C - C</div><div class="bc-sfx">suffix: -ane</div></div>
+        <div class="bond-card double"><div class="bc-type">Alkene</div><div class="bc-sym">C = C</div><div class="bc-sfx">suffix: -ene</div></div>
+        <div class="bond-card triple"><div class="bc-type">Alkyne</div><div class="bc-sym">C ≡ C</div><div class="bc-sfx">suffix: -yne</div></div>
+      `;
+      block.appendChild(g);
+    }
+    
+    if(step.prefixGrid) {
+      const g = document.createElement('div');
+      g.className = 'prefix-grid';
+      const roots = [
+        {n:1, p:"meth-", ex:"methane"}, {n:2, p:"eth-", ex:"ethane"},
+        {n:3, p:"prop-", ex:"propane"}, {n:4, p:"but-", ex:"butane"},
+        {n:5, p:"pent-", ex:"pentane"}, {n:6, p:"hex-", ex:"hexane"},
+        {n:7, p:"hept-", ex:"heptane"}, {n:8, p:"oct-", ex:"octane"}
+      ];
+      roots.forEach(r => {
+        g.innerHTML += `<div class="prefix-cell"><div class="pc-n">${r.n}C</div><div class="pc-p">${r.p}</div><div class="pc-ex">${r.ex}</div></div>`;
+      });
+      block.appendChild(g);
+    }
+    
+    if(step.fgTable) {
+      const t = document.createElement('table');
+      t.className = 'fg-table';
+      t.innerHTML = `
+        <thead><tr><th>Group</th><th>Formula</th><th>Prefix/Suffix</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>Alcohol</td><td>-OH</td><td>suffix: -ol</td><td>ethanol</td></tr>
+          <tr><td>Aldehyde</td><td>-CHO</td><td>suffix: -al</td><td>ethanal</td></tr>
+          <tr><td>Ketone</td><td>-CO-</td><td>suffix: -one</td><td>propanone</td></tr>
+          <tr><td>Carboxylic Acid</td><td>-COOH</td><td>suffix: -oic acid</td><td>ethanoic acid</td></tr>
+        </tbody>
+      `;
+      block.appendChild(t);
+    }
+    
+    if(step.ruleSteps) {
+      const d = document.createElement('div');
+      d.style.margin = '10px 0';
+      const rlist = [
+        "Find the longest continuous carbon chain to choose the primary parent root prefix.",
+        "Identify chemical bonds or functional groups attached to chain sites to modify suffixes.",
+        "Number your chain positions sequentially to give the lowest possible indices to attachments."
+      ];
+      rlist.forEach((rText, rIdx) => {
+        d.innerHTML += `<div class="rule-step"><div class="rule-num">0${rIdx+1}</div><div class="rule-body">${rText}</div></div>`;
+      });
+      block.appendChild(d);
+    }
+    
+    block.innerHTML += `
+      <div class="lhi">${step.hi}</div>
+      <div class="lex">${step.ex}</div>
+    `;
+    container.appendChild(block);
+    
+    document.getElementById('lessonNextBtn').innerText = (lessonStepIdx === steps.length - 1) ? "Complete Topic" : "Next Step";
+    document.getElementById('lessonNextBtn').disabled = false;
+    
+  } else if(step.type === 'mcq') {
+    block.innerHTML = `<h3>Concept Check Question</h3><p style="margin-bottom:12px; font-weight:bold; color:#ffa657;">${step.q}</p>`;
+    const mDiv = document.createElement('div');
+    mDiv.className = 'mo';
+    
+    step.opts.forEach((o, oIdx) => {
+      const row = document.createElement('div');
+      row.className = 'moo';
+      row.innerHTML = `<span class="ml">${String.fromCharCode(65 + oIdx)}</span><span>${o}</span>`;
+      row.onclick = () => selectMcqOption(oIdx, row, mDiv);
+      mDiv.appendChild(row);
+    });
+    
+    block.appendChild(mDiv);
+    const fbBox = document.createElement('div');
+    fbBox.id = 'lessonStepFeedback';
+    block.appendChild(fbBox);
+    
+    container.appendChild(block);
+    document.getElementById('lessonNextBtn').innerText = "Next Step";
+    document.getElementById('lessonNextBtn').disabled = true;
+    
+  } else if(step.type === 'fill') {
+    block.innerHTML = `<h3>Concept Check Question</h3><p style="margin-bottom:12px; font-weight:bold; color:#ffa657;">${step.q}</p>`;
+    
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'fi2';
+    input.placeholder = 'Type your answer here...';
+    input.onkeydown = (e) => { if(e.key === 'Enter') checkFillAns(input.value, input); };
+    block.appendChild(input);
+    
+    const checkBtn = document.createElement('button');
+    checkBtn.className = 'btn t';
+    checkBtn.style.width = '100%';
+    checkBtn.style.marginBottom = '10px';
+    checkBtn.innerText = 'Verify Answer';
+    checkBtn.onclick = () => checkFillAns(input.value, input);
+    block.appendChild(checkBtn);
+    
+    const fbBox = document.createElement('div');
+    fbBox.id = 'lessonStepFeedback';
+    block.appendChild(fbBox);
+    
+    container.appendChild(block);
+    document.getElementById('lessonNextBtn').innerText = "Next Step";
+    document.getElementById('lessonNextBtn').disabled = true;
+  }
+}
+
+function selectMcqOption(idx, rowEl, parentEl) {
+  const step = currentTopic.steps[lessonStepIdx];
+  const items = parentEl.querySelectorAll('.moo');
+  
+  items.forEach(el => el.className = 'moo dis');
+  
+  const fb = document.getElementById('lessonStepFeedback');
+  if(idx === step.ans) {
+    rowEl.className = 'moo dis ok';
+    fb.innerHTML = `<div class="qfb ok">✨ Correct answer!</div><div class="exp">${step.exp}</div>`;
+  } else {
+    rowEl.className = 'moo dis no';
+    items[step.ans].className = 'moo dis ok';
+    fb.innerHTML = `<div class="qfb no">❌ Incorrect choice.</div><div class="exp">${step.exp}</div>`;
+  }
+  
+  document.getElementById('lessonNextBtn').innerText = (lessonStepIdx === currentTopic.steps.length - 1) ? "Complete Topic" : "Next Step";
+  document.getElementById('lessonNextBtn').disabled = false;
+}
+
+function checkFillAns(val, inputEl) {
+  const step = currentTopic.steps[lessonStepIdx];
+  if(cleanString(val) === cleanString(step.ans)) {
+    inputEl.className = 'fi2 ok';
+    inputEl.disabled = true;
+    document.getElementById('lessonStepFeedback').innerHTML = `<div class="qfb ok">✨ Correct!</div><div class="exp">${step.exp}</div>`;
+  } else {
+    inputEl.className = 'fi2 no';
+    inputEl.disabled = true;
+    document.getElementById('lessonStepFeedback').innerHTML = `<div class="qfb no">❌ Incorrect value matched.</div><div class="exp">${step.exp}</div>`;
+  }
+  
+  document.getElementById('lessonNextBtn').innerText = (lessonStepIdx === currentTopic.steps.length - 1) ? "Complete Topic" : "Next Step";
+  document.getElementById('lessonNextBtn').disabled = false;
+}
+
+function nextLessonStep() {
+  lessonStepIdx++;
+  if(lessonStepIdx >= currentTopic.steps.length) {
+    renderTopicCompletion();
+  } else {
+    showLessonStep();
+  }
+}
+
+function renderTopicCompletion() {
+  const container = document.getElementById('lessonContentContainer');
+  container.innerHTML = `
+    <div class="lcmp">
+      <span class="lci">🏆</span>
+      <div class="lct">Topic Block Unlocked!</div>
+      <div class="lcs">You have finished checking your rules definitions cleanly.</div>
+      <button class="btn t" onclick="switchView('guide')">Back to Guide</button>
+    </div>
+  `;
+  document.getElementById('lessonNextBtn').disabled = true;
+}
+
+function openStandalonePractice(pqid) {
+  const pq = PRACTICE_QUESTIONS.find(x => x.id === pqid);
+  
+  document.getElementById(currentView).style.display = 'none';
+  document.getElementById('lessonView').style.display = 'block';
+  currentView = 'lessonView';
+  
+  document.getElementById('lessonTopicTitle').innerText = `Practice Challenge #${pq.id}`;
+  document.getElementById('lessonTopicSub').innerText = `Standalone Question`;
+  document.getElementById('lessonPills').innerHTML = '<div class="sp d"></div>';
+  
+  const container = document.getElementById('lessonContentContainer');
+  container.innerHTML = '';
+  
+  const block = document.createElement('div');
+  block.className = 'lc';
+  block.innerHTML = `<div class="q-label">Question Challenge</div><p style="font-size:13px; font-weight:bold; margin-bottom:12px; color:#ffa657;">${pq.q}</p>`;
+  
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.className = 'fi2';
+  input.placeholder = 'Type nomenclature string here...';
+  block.appendChild(input);
+  
+  const checkBtn = document.createElement('button');
+  checkBtn.className = 'btn t';
+  checkBtn.style.width = '100%';
+  checkBtn.innerText = 'Verify Formula Name';
+  block.appendChild(checkBtn);
+  
+  const fbBox = document.createElement('div');
+  fbBox.style.marginTop = '10px';
+  block.appendChild(fbBox);
+  
+  const hint = document.createElement('div');
+  hint.className = 'hint-box';
+  hint.innerText = pq.h;
+  block.appendChild(hint);
+  
+  container.appendChild(block);
+  
+  const evalFunc = () => {
+    input.disabled = true;
+    checkBtn.disabled = true;
+    if(cleanString(input.value) === cleanString(pq.ans)) {
+      input.className = 'fi2 ok';
+      fbBox.innerHTML = `<div class="qfb ok">🎉 Correct answer! Matches target structure perfectly.</div>`;
+    } else {
+      input.className = 'fi2 no';
+      fbBox.innerHTML = `<div class="qfb no">❌ Incorrect name target.</div><div class="exp">The verified correct sequence is: <b>${pq.ans}</b></div>`;
+    }
+  };
+  
+  checkBtn.onclick = evalFunc;
+  input.onkeydown = (e) => { if(e.key === 'Enter') evalFunc(); };
+  
+  document.getElementById('lessonNextBtn').innerText = "Return to Guide";
+  document.getElementById('lessonNextBtn').disabled = false;
+  document.getElementById('lessonNextBtn').onclick = () => switchView('guide');
+}
+
+window.onload = () => {
+  document.getElementById('menuView').style.display = 'grid';
+};
+</script>
+</body>
+</html>
